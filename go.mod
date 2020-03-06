@@ -1,4 +1,4 @@
-module github.com/fifsky/logrus-sentry-hook
+module github.com/goapt/logrus-sentry-hook
 
 go 1.13
 
