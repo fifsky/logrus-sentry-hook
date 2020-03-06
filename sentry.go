@@ -59,7 +59,8 @@ func (hook *Hook) Fire(entry *logrus.Entry) error {
 
     hub := sentry.CurrentHub()
     hook.client.CaptureEvent(&event, nil, hub.Scope())
-    hook.client.Flush(time.Second * 5)
+    //不能每次调用都Flush，应该在程序退出的地方调用，所以应该用context接管
+    //hook.client.Flush(time.Second * 5)
     return nil
 }
 
