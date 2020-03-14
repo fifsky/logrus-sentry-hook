@@ -58,6 +58,10 @@ func (hook *Hook) Fire(entry *logrus.Entry) error {
 		Exception:   exceptions,
 	}
 
+	if fp, ok := entry.Data["fingerprint"].([]string); ok {
+		event.Fingerprint = fp
+	}
+
 	hub := sentry.CurrentHub()
 	hook.client.CaptureEvent(&event, nil, hub.Scope())
 	return nil
